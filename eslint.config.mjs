@@ -1,16 +1,39 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslintPluginReact from 'eslint-plugin-react'
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import globals from 'globals'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+export default [
+  { ignores: ['eslint.config.mjs'] },
+  {
+    ...eslintPluginReact.configs.flat.recommended,
+    ...eslintPluginReact.configs.flat['jsx-runtime'],
+    files: ['src/**/*.{js,jsx}'],
+    plugins: {
+      eslintPluginReact,
+      'react-hooks': eslintPluginReactHooks,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    rules: {
+      ...eslintPluginReactHooks.configs.recommended.rules,
+    },
+  },
+  eslintPluginPrettierRecommended,
+]
