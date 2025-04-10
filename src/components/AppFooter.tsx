@@ -6,19 +6,19 @@ const AppFooter = () => {
   return (
     <CFooter>
       <div>
-        <a href="https://coreui.io" target="_blank" rel="noopener noreferrer">
-          CoreUI
+        <a href="" target="_blank" rel="noopener noreferrer">
+          DEVXNET
         </a>
-        <span className="ms-1">&copy; 2025 creativeLabs.</span>
+        <span className="ms-1">&copy; 2025.</span>
       </div>
       <div className="ms-auto">
-        <span className="me-1">Powered by</span>
+        <span className="me-1">Developed by</span>
         <a
-          href="https://coreui.io/react"
+          href="https://santhosh.devxnet.cloud/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          CoreUI for React
+          Santhosh Raj 
         </a>
       </div>
     </CFooter>
